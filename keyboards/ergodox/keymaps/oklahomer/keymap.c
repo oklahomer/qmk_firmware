@@ -16,8 +16,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | TAB    |   Q  |   W  |   E  |   R  |   T  |LAlt+ |           |LGui+ |   Y  |   U  |   I  |   O  |   P  | BkSp   |
  * |--------+------+------+------+------+------| Space|           | Space|------+------+------+------+------+--------|
  * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  | Enter  |
- * |--------+------+------+------+------+------|LCtrl+|           |      |------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  | [    |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
+ * |--------+------+------+------+------+------|Esc   |           |      |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | LALT |      |      |   \  |   '  |                                       |   -  |   =  |   [  |   ]  |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      |        |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      |      |       |      |        |      |
- *                                 | Space| LGui |------|       |------|  L1    |Space |
+ *                                 | Esc  | LGui |------|       |------|  L1    |Space |
  *                                 |      |      |  L2  |       |      |        |      |
  *                                 `--------------------'       `----------------------'
  *
@@ -37,11 +37,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   KC_1,  KC_2,  KC_3,    KC_4,     KC_5,          KC_NO,
         KC_TAB,   KC_Q,  KC_W,  KC_E,    KC_R,     KC_T,          LALT(KC_SPACE),
         KC_LCTRL, KC_A,  KC_S,  KC_D,    KC_F,     KC_G,
-        KC_LSFT,  KC_Z,  KC_X,  KC_C,    KC_V,     KC_B,          LCTL(KC_LBRC),
+        KC_LSFT,  KC_Z,  KC_X,  KC_C,    KC_V,     KC_B,          KC_ESC,
         KC_LALT,  KC_NO, KC_NO, KC_BSLS, KC_QUOT,
                                                    KC_NO,         KC_NO,
                                                                   KC_NO,
-                                         KC_SPACE, KC_LGUI,       MO(MDIA),
+                                         KC_ESC,   KC_LGUI,       MO(MDIA),
         // right hand
              KC_NO,          KC_6,            KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
              LGUI(KC_SPACE), KC_Y,            KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPACE,
