@@ -41,7 +41,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* Set 0 if debouncing isn't needed */
-#define DEBOUNCE    5
+// Modified after o-ring installment to prevent chattering.
+// https://github.com/qmk/qmk_firmware/issues/910
+// #define DEBOUNCE    5
+#define DEBOUNCE    2
 
 /*
  * Feature disable options

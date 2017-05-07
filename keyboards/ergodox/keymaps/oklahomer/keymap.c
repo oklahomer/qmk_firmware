@@ -7,6 +7,11 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 
+/*
+ * See $PROJ_HOME/keyboards/ergodox/ez/config.h for DEBOUNCE setting.
+ * Default was 5, but changed after o-ring installment to prevent chattering.
+ */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
