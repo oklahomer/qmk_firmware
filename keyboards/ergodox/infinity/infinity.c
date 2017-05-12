@@ -38,7 +38,6 @@ void init_serial_link_hal(void) {
 // Using a higher pre-scalar without flicker is possible but FTM0_MOD will need to be reduced
 // Which will reduce the brightness range
 #define PRESCALAR_DEFINE 0
-#ifdef VISUALIZER_ENABLE
 void lcd_backlight_hal_init(void) {
 	// Setup Backlight
     SIM->SCGC6 |= SIM_SCGC6_FTM0;
@@ -71,12 +70,34 @@ void lcd_backlight_hal_init(void) {
     RGB_PORT->PCR[BLUE_PIN] = RGB_MODE;
 }
 
-void lcd_backlight_hal_color(uint16_t r, uint16_t g, uint16_t b) {
-	CHANNEL_RED.CnV = r;
-	CHANNEL_GREEN.CnV = g;
-	CHANNEL_BLUE.CnV = b;
+static uint16_t cie_lightness(uint16_t v) {
+    // The CIE 1931 formula for lightness
+    // Y = luminance (output) 0-1
+    // L = lightness input 0 - 100
+
+    // Y = (L* / 902.3)           if L* <= 8
+    // Y = ((L* + 16) / 116)^3    if L* > 8
+
+    float l =  100.0f * (v / 65535.0f);
+    float y = 0.0f;
+    if (l <= 8.0f) {
+       y = l / 902.3;
+    }
+    else {
+        y = ((l + 16.0f) / 116.0f);
+        y = y * y * y;
+        if (y > 1.0f) {
+            y = 1.0f;
+        }
+    }
+    return y * 65535.0f;
 }
-#endif
+
+void lcd_backlight_hal_color(uint16_t r, uint16_t g, uint16_t b) {
+	CHANNEL_RED.CnV = cie_lightness(r);
+	CHANNEL_GREEN.CnV = cie_lightness(g);
+	CHANNEL_BLUE.CnV = cie_lightness(b);
+}
 
 __attribute__ ((weak))
 void matrix_init_user(void) {
@@ -92,6 +113,10 @@ void matrix_init_kb(void) {
 	// runs once when the firmware starts up
 
 	matrix_init_user();
+	// The backlight always has to be initialized, otherwise it will stay lit
+#ifndef VISUALIZER_ENABLE
+	lcd_backlight_hal_init();
+#endif
 }
 
 void matrix_scan_kb(void) {
@@ -101,32 +126,70 @@ void matrix_scan_kb(void) {
 	matrix_scan_user();
 }
 
+__attribute__ ((weak))
 void ergodox_board_led_on(void){
 }
 
+__attribute__ ((weak))
 void ergodox_right_led_1_on(void){
 }
 
+__attribute__ ((weak))
 void ergodox_right_led_2_on(void){
 }
 
+__attribute__ ((weak))
 void ergodox_right_led_3_on(void){
 }
 
-void ergodox_right_led_on(uint8_t led){
-}
-
+__attribute__ ((weak))
 void ergodox_board_led_off(void){
 }
 
+__attribute__ ((weak))
 void ergodox_right_led_1_off(void){
 }
 
+__attribute__ ((weak))
 void ergodox_right_led_2_off(void){
 }
 
+__attribute__ ((weak))
 void ergodox_right_led_3_off(void){
 }
 
-void ergodox_right_led_off(uint8_t led){
+__attribute__ ((weak))
+void ergodox_right_led_1_set(uint8_t n) {
 }
+
+__attribute__ ((weak))
+void ergodox_right_led_2_set(uint8_t n) {
+}
+
+__attribute__ ((weak))
+void ergodox_right_led_3_set(uint8_t n) {
+}
+
+#ifdef ONEHAND_ENABLE
+__attribute__ ((weak))
+const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+    {{0, 9}, {1, 9}, {2, 9}, {3, 9}, {4, 9}},
+    {{0, 10}, {1, 10}, {2, 10}, {3, 10}, {4, 10}},
+    {{0, 11}, {1, 11}, {2, 11}, {3, 11}, {4, 11}},
+    {{0, 12}, {1, 12}, {2, 12}, {3, 12}, {4, 12}},
+    {{0, 13}, {1, 13}, {2, 13}, {3, 13}, {4, 13}},
+    {{0, 14}, {1, 14}, {2, 14}, {3, 14}, {4, 14}},
+    {{0, 15}, {1, 15}, {2, 15}, {3, 15}, {4, 15}},
+    {{0, 16}, {1, 16}, {2, 16}, {3, 16}, {4, 16}},
+    {{0, 17}, {1, 17}, {2, 17}, {3, 17}, {4, 17}},
+    {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}},
+    {{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}},
+    {{0, 2}, {1, 2}, {2, 2}, {3, 2}, {4, 2}},
+    {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}},
+    {{0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 4}},
+    {{0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}},
+    {{0, 6}, {1, 6}, {2, 6}, {3, 6}, {4, 6}},
+    {{0, 7}, {1, 7}, {2, 7}, {3, 7}, {4, 7}},
+    {{0, 8}, {1, 8}, {2, 8}, {3, 8}, {4, 8}},
+};
+#endif
