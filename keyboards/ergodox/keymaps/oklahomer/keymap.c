@@ -64,8 +64,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+-------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      |      |       |      |      |           |      |      |      |      |      |  F11 |        |
  * |--------+------+------+------+-------+------|      |           |      |------+------+------+------+------+--------|
- * |        |LShift|LShift|LAlt+ |       |      |      |           |      |      |      |      |      |      |        |
- * |        |LGUI+[|LGUI+]|   F12|       |      |------|           |------| Left | Down |  Up  | Right|  F12 |        |
+ * |        |LShift|LShift|LAlt+ |LGUI+  |      |      |           |      |      |      |      |      |      |        |
+ * |        |LGUI+[|LGUI+]|   F12|LShift+|      |      |           |      | Left | Down |  Up  | Right|  F12 |        |
+ * |        |      |      |      |    F12|      |------|           |------|      |      |      |      |      |        |
  * |--------+------+------+------+-------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      |      |LGUI+  |      |      |           |      |      |      |      |      |      |        |
  * |        |      |      |      |LAlt+  |      |      |           |      |      |      |      |      |      |        |
@@ -87,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        // left hand
        M(0),    KC_F1,            KC_F2,            KC_F3,        KC_F4,                KC_F5,   KC_NO,
        KC_TRNS, KC_NO,            KC_NO,            KC_NO,        KC_NO,                KC_NO,   KC_NO,
-       KC_TRNS, LGUI(S(KC_LBRC)), LGUI(S(KC_RBRC)), LALT(KC_F12), KC_NO,                KC_NO,
+       KC_TRNS, LGUI(S(KC_LBRC)), LGUI(S(KC_RBRC)), LALT(KC_F12), LGUI(S(KC_F12)),      KC_NO,
        KC_TRNS, KC_NO,            KC_NO,            KC_NO,        LGUI(LALT(S(KC_V))),  KC_NO,   KC_NO,
        KC_TRNS, KC_NO,            KC_NO,            KC_NO,        RESET,
                                                                                         KC_TRNS, KC_TRNS,
