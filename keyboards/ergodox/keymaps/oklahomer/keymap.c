@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |Version |  F1  |  F2  |  F3  |  F4   |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |        |
  * |--------+------+------+------+-------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      |      |       |      |      |           |      |      |      |      |      |  F11 |        |
+ * |LGUI+F1 |      |      |      |       |      |      |           |      |      |      |      |      |  F11 |        |
  * |--------+------+------+------+-------+------|      |           |      |------+------+------+------+------+--------|
  * |        |LShift|LShift|LAlt+ |LGUI+  |      |      |           |      |      |      |      |      |      |        |
  * |        |LGUI+[|LGUI+]|   F12|LShift+|      |      |           |      | Left | Down |  Up  | Right|  F12 |        |
@@ -86,14 +86,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // SYMBOLS
 [SYMB] = KEYMAP(
        // left hand
-       M(0),    KC_F1,            KC_F2,            KC_F3,        KC_F4,                KC_F5,   KC_NO,
-       KC_TRNS, KC_NO,            KC_NO,            KC_NO,        KC_NO,                KC_NO,   KC_NO,
-       KC_TRNS, LGUI(S(KC_LBRC)), LGUI(S(KC_RBRC)), LALT(KC_F12), LGUI(S(KC_F12)),      KC_NO,
-       KC_TRNS, KC_NO,            KC_NO,            KC_NO,        LGUI(LALT(S(KC_V))),  KC_NO,   KC_NO,
-       KC_TRNS, KC_NO,            KC_NO,            KC_NO,        RESET,
-                                                                                        KC_TRNS, KC_TRNS,
-                                                                                                 KC_TRNS,
-                                                                  KC_TRNS,              KC_TRNS, KC_TRNS,
+       M(0),        KC_F1,            KC_F2,            KC_F3,        KC_F4,                KC_F5,   KC_NO,
+       LGUI(KC_F1), KC_NO,            KC_NO,            KC_NO,        KC_NO,                KC_NO,   KC_NO,
+       KC_TRNS,     LGUI(S(KC_LBRC)), LGUI(S(KC_RBRC)), LALT(KC_F12), LGUI(S(KC_F12)),      KC_NO,
+       KC_TRNS,     KC_NO,            KC_NO,            KC_NO,        LGUI(LALT(S(KC_V))),  KC_NO,   KC_NO,
+       KC_TRNS,     KC_NO,            KC_NO,            KC_NO,        RESET,
+                                                                                            KC_TRNS, KC_TRNS,
+                                                                                                     KC_TRNS,
+                                                                       KC_TRNS,             KC_TRNS, KC_TRNS,
        // right hand
        KC_NO,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_F11,  KC_TRNS,
