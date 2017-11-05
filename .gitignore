@@ -4,7 +4,7 @@
 *.eep
 *.elf
 *.hex
-!keyboards/ergodox/keymaps/oklahomer/ergodox_ez_oklahomer.hex
+!keyboards/ergodox_ez/keymaps/oklahomer/ergodox_ez_oklahomer.hex
 *.qmk
 !util/bootloader.hex
 !quantum/tools/eeprom_reset.hex
