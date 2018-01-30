@@ -1,2 +1,2 @@
-cd $PROJECT_ROOT/keyboards/ergodox
-make keyboard=ergodox_ez  keymap=oklahomer
+cd $PROJECT_ROOT
+make keyboard=ergodox_ez keymap=oklahomer
