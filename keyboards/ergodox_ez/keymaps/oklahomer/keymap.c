@@ -9,6 +9,10 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 
+/* Use this setting with Karabiner Elements
+ * https://github.com/oklahomer/dotfiles/blob/master/.config/karabiner/karabiner.json
+ */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
@@ -23,13 +27,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | LALT |      |      |   \  |   '  |                                       |   -  |   =  |   [  |   ]  | RALT |
  *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,---------------.
- *                                        |      |      |       |      |        |
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      |      |       |      |        |      |
- *                                 | Esc  | LGui |------|       |------|  L1    |Space |
- *                                 |      |      |  L2  |       |  `   |        |      |
- *                                 `--------------------'       `----------------------'
+ *                                        ,-------------.       ,--------------.
+ *                                        |      |      |       |      |       |
+ *                                 ,------|------|------|       |------+-------+------.
+ *                                 |      |      |      |       |      |       |      |
+ *                                 | Esc  | LGui |------|       |------| RGui  |Space |
+ *                                 |      |      |  L2  |       |  `   |       |      |
+ *                                 `--------------------'       `---------------------'
  *
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -45,14 +49,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   KC_NO,
                                          KC_ESC,   KC_LGUI,       MO(MDIA),
         // right hand
-             KC_NO,          KC_6,            KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
-             LGUI(KC_SPACE), KC_Y,            KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPACE,
-                             KC_H,            KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-             KC_NO,          KC_N,            KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                              KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_RALT,
+             KC_NO,          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
+             LGUI(KC_SPACE), KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPACE,
+                             KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+             KC_NO,          KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                                      KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_RALT,
              KC_NO,          KC_NO,
              KC_NO,
-             KC_GRV,         MO(SYMB), KC_SPACE
+             MO(SYMB),       KC_RGUI, KC_SPACE
     ),
 /* Keymap 1: Symbol Layer
  *
