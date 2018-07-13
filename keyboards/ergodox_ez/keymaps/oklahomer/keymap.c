@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
-[BASE] = KEYMAP(  // layer 0 : default
+[BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_ESC,   KC_1,  KC_2,   KC_3,    KC_4,          KC_5,    TG(MDIA),
         KC_TAB,   KC_Q,  KC_W,   KC_E,    KC_R,          KC_T,    LALT(KC_SPACE),
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 // SYMBOLS
-[SYMB] = KEYMAP(
+[SYMB] = LAYOUT_ergodox(
        // left hand
        M(0),        KC_F1,            KC_F2,            KC_F3,        KC_F4,                KC_F5,   KC_NO,
        LGUI(KC_F1), KC_NO,            KC_NO,            KC_NO,        KC_NO,                KC_NO,   KC_NO,
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 // MEDIA AND MOUSE
-[MDIA] = KEYMAP(
+[MDIA] = LAYOUT_ergodox(
        KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
        KC_NO, KC_NO,   KC_NO,   KC_MS_U, KC_NO,   KC_NO,   KC_MPRV,
        KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,   KC_NO,
