@@ -11,6 +11,11 @@
 
 /* Use this setting with Karabiner Elements
  * https://github.com/oklahomer/dotfiles/blob/master/.config/karabiner/karabiner.json
+ *
+ * NOTE: Instead of using tap setting such as SFT_T(KC_ESC), use karabiner configuration.
+ * Behavior differs slightly.
+ * - Tap: Press a key for a certain period of time to change input.
+ * - Karabiner: Change input when a key is pressed with another key.
  */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -31,8 +36,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |        |       |
  *                                ,-------|------|------|       |--------+-------+-------.
  *                                |       |      |      |       |        |       |       |
- *                                | Esc/  | LGui |------|       |--------| RGui  |Space/ |
- *                                | LShift|      |      |       |        |       | LCtrl |
+ *                                |  Esc  | LGui |------|       |--------| RGui  | Space |
+ *                                |       |      |      |       |        |       |       |
  *                                `---------------------'       `------------------------'
  *
  */
@@ -47,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LALT,  KC_NO, KC_NO,  KC_NO,   MO(MDIA),
                                                          KC_NO,   KC_NO,
                                                                   KC_NO,
-                                          SFT_T(KC_ESC), KC_LGUI, KC_NO,
+                                          KC_ESC,        KC_LGUI, KC_NO,
         // right hand
              KC_NO,          KC_6,    KC_7,             KC_8,    KC_9,    KC_0,    KC_GRV,
              LGUI(KC_SPACE), KC_Y,    KC_U,             KC_I,    KC_O,    KC_P,    KC_BSPACE,
@@ -56,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       MO(SYMB),         KC_NO,   KC_NO,   KC_NO,   KC_RALT,
              KC_NO,          KC_NO,
              KC_NO,
-             KC_NO,          KC_RGUI, LCTL_T(KC_SPACE)
+             KC_NO,          KC_RGUI, KC_SPACE
     ),
 /* Keymap 1: Symbol Layer
  *
@@ -111,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
  * |        |       |      |      |      |      |      |           |      |      |      |        |      |      |        |
  * `--------+-------+------+------+------+-------------'           `-------------+------+--------+------+------+--------'
- *   |      |       |      |      | Reset|                                       |      |        |      |      |      |
+ *   |Reset |       |      |      |      |                                       |      |        |      |      |      |
  *   `-----------------------------------'                                       `------------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -127,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_NO, KC_NO,   KC_NO,   KC_MS_U, KC_NO,   KC_NO,   KC_MPRV,
        KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,   KC_NO,
        KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-       KC_NO, KC_NO,   KC_NO,   KC_NO,   RESET,
+       RESET, KC_NO,   KC_NO,   KC_NO,   KC_NO,
                                                   KC_TRNS, KC_TRNS,
                                                            KC_TRNS,
                                          KC_TRNS, KC_TRNS, KC_TRNS,
