@@ -96,8 +96,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * this is more directly exposed.
  */
 // #define DEBOUNCE    15
-#define DEBOUNCE    5
-// #define DEBOUNCE    30 // Avoid chattering. TODO Try Electrical Contact Cleaner
 
 #define PREVENT_STUCK_MODIFIERS
 
