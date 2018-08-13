@@ -14,7 +14,7 @@
  *
  * NOTE: Instead of using tap setting such as SFT_T(KC_ESC), use karabiner configuration.
  * Behavior differs slightly.
- * - Tap: Press a key for a certain period of time to change input.
+ * - Ergodox Hold: Press a key for a certain period of time to change input. Affected by TAPPING_TERM value.
  * - Karabiner: Change input when a key is pressed with another key.
  */
 
@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| Space|           | Space|------+------+------+------+------+--------|
  * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  | Enter  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |  JP  |           |  EN  |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | LALT |      |      |      |  L2  |                                       |  L1  |      |      |      | RALT |
  *   `----------------------------------'                                       `----------------------------------'
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |        |       |
  *                                ,-------|------|------|       |--------+-------+-------.
  *                                |       |      |      |       |        |       |       |
- *                                | LShift| LGui |------|       |--------| RGui  | Space |
+ *                                | RShift| LGui |------|       |--------| RGui  | Space |
  *                                |       |      |      |       |        |       |       |
  *                                `---------------------'       `------------------------'
  *
@@ -48,16 +48,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   KC_1,  KC_2,   KC_3,    KC_4,     KC_5,    KC_NO,
         KC_TAB,   KC_Q,  KC_W,   KC_E,    KC_R,     KC_T,    LALT(KC_SPACE),
         KC_LCTRL, KC_A,  KC_S,   KC_D,    KC_F,     KC_G,
-        KC_LSFT,  KC_Z,  KC_X,   KC_C,    KC_V,     KC_B,    KC_NO,
+        KC_LSFT,  KC_Z,  KC_X,   KC_C,    KC_V,     KC_B,    KC_LANG1,
         KC_LALT,  KC_NO, KC_NO,  KC_NO,   MO(MDIA),
                                                     KC_NO,   KC_NO,
                                                              KC_NO,
-                                          KC_LSFT,  KC_LGUI, KC_NO,
+                                          KC_RSFT,  KC_LGUI, KC_NO,
         // right hand
              KC_NO,          KC_6,    KC_7,         KC_8,    KC_9,    KC_0,    KC_GRV,
              LGUI(KC_SPACE), KC_Y,    KC_U,         KC_I,    KC_O,    KC_P,    KC_BSPACE,
                              KC_H,    KC_J,         KC_K,    KC_L,    KC_SCLN, KC_ENT,
-             KC_NO,          KC_N,    KC_M,         KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+             KC_LANG2,       KC_N,    KC_M,         KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                       MO(SYMB),     KC_NO,   KC_NO,   KC_NO,   KC_RALT,
              KC_NO,          KC_NO,
              KC_NO,
