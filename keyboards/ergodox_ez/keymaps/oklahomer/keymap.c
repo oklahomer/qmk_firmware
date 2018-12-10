@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   1  |   2  |   3  |   4  |   5  |      |           |      |  6   |  7   |  8   |  9   |  0   |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |  `   |   \  |   "  |      |      |           |      |      |   -  |  =   |  [   |  ]   |        |
+ * |        | TAB  |  `   |   \  |   "  | BkSp |      |           |      |      |   -  |  =   |  [   |  ]   |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      | ESC  |  TAB | BkSp |      |           |      |      |      |      |      |      |        |
+ * |        |      |      | ESC  |      |      |      |           |      |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                        `---------------------------------'
@@ -89,8 +89,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        // left hand
        M(0),    KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,
        KC_TRNS, KC_1,     KC_2,    KC_3,    KC_4,    KC_5,      KC_NO,
-       KC_TRNS, KC_NO,    KC_GRV,  KC_BSLS, KC_QUOT, KC_NO,
-       KC_TRNS, KC_NO,    KC_NO,   KC_ESC,  KC_TAB,  KC_BSPACE, KC_NO,
+       KC_TRNS, KC_TAB,   KC_GRV,  KC_BSLS, KC_QUOT, KC_BSPACE,
+       KC_TRNS, KC_NO,    KC_NO,   KC_ESC,  KC_NO,   KC_NO,     KC_NO,
        KC_TRNS, KC_NO,    KC_NO,   KC_NO,   KC_NO,
                                                      KC_TRNS,   KC_TRNS,
                                                                 KC_TRNS,
