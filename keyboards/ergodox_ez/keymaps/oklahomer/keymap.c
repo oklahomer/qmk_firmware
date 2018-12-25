@@ -8,6 +8,7 @@
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
+#define APP  3 // application keys
 
 /* Use this setting with Karabiner Elements
  * https://github.com/oklahomer/dotfiles/blob/master/.config/karabiner/karabiner.json
@@ -74,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      | ESC  |      |      |      |           |      |      |      |  ,   |  .   |  /   |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   |      |      |      |      |  L3  |                                       |      |      |      |      |      |
  *   `----------------------------------'                                        `---------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -91,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_1,     KC_2,    KC_3,    KC_4,    KC_5,      KC_NO,
        KC_TRNS, KC_TAB,   KC_GRV,  KC_BSLS, KC_QUOT, KC_BSPACE,
        KC_TRNS, KC_NO,    KC_NO,   KC_ESC,  KC_NO,   KC_NO,     KC_NO,
-       KC_TRNS, KC_NO,    KC_NO,   KC_NO,   KC_NO,
+       KC_TRNS, KC_NO,    KC_NO,   KC_NO,   MO(APP),
                                                      KC_TRNS,   KC_TRNS,
                                                                 KC_TRNS,
                                             KC_TRNS, KC_TRNS,   KC_TRNS,
@@ -145,6 +146,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_WBAK
+),
+/* Keymap 3: Applications
+ *
+ * ,-----------------------------------------------------.           ,-------------------------------------------------.
+ * |        |       |      |      |      |        |      |           |      |      |      |      |      |      |        |
+ * |--------+-------+------+------+------+---------------|           |------+------+------+------+------+------+--------|
+ * |        |       |      |      |      |Terminal|      |           |      |      |      | Idea |      |      |        |
+ * |--------+-------+------+------+------+--------|      |           |      |------+------+------+------+------+--------|
+ * |        |       |Slack |      |      | Goland |------|           |------|      |      |      | LINE |      |        |
+ * |--------+-------+------+------+------+--------|      |           |      |------+------+------+------+------+--------|
+ * |        |       |      |Chrome|      |        |      |           |      |      |      |      |      |      |        |
+ * `--------+-------+------+------+------+---------------'           `-------------+------+------+------+------+--------'
+ *   |      |       |      |      |      |                                         |      |      |      |      |      |
+ *   `-----------------------------------'                                         `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+// APPLICATIONS
+[APP] = LAYOUT_ergodox(
+       KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,      KC_NO,
+       KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, RALT(KC_T), KC_NO,
+       KC_NO, KC_NO, RALT(KC_S), KC_NO,      KC_NO, RALT(KC_G),
+       KC_NO, KC_NO, KC_NO,      RALT(KC_C), KC_NO, KC_NO,      KC_NO,
+       KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO,
+                                                    KC_NO,      KC_NO,
+                                                                KC_NO,
+                                             KC_B,  KC_NO,      KC_NO,
+    // right hand
+       KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
+       KC_NO, KC_NO, KC_NO, RALT(KC_I), KC_NO,      KC_NO, KC_NO,
+              KC_NO, KC_NO, KC_NO,      RALT(KC_L), KC_NO, KC_NO,
+       KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
+                     KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
+       KC_NO, KC_NO,
+       KC_NO,
+       KC_NO, KC_NO, KC_NO
 ),
 };
 
