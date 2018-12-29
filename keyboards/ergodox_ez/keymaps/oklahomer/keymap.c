@@ -23,9 +23,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | Esc    |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |   `    |
+ * | Esc    |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | TAB    |   Q  |   W  |   E  |   R  |   T  |LAlt+ |           |RALT+M|   Y  |   U  |   I  |   O  |   P  | BkSp   |
+ * | TAB    |   Q  |   W  |   E  |   R  |   T  |LAlt+ |           |  L3  |   Y  |   U  |   I  |   O  |   P  | BkSp   |
  * |--------+------+------+------+------+------| Space|           |      |------+------+------+------+------+--------|
  * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  | Enter  |
  * |--------+------+------+------+------+------|Ctrl+1|           |Ctrl+2|------+------+------+------+------+--------|
@@ -55,8 +55,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                              KC_NO,
                                           KC_RSFT,  KC_LGUI, KC_NO,
         // right hand
-             KC_NO,      KC_6,    KC_7,     KC_8,    KC_9,    KC_0,    KC_GRV,
-             RALT(KC_M), KC_Y,    KC_U,     KC_I,    KC_O,    KC_P,    KC_BSPACE,
+             KC_NO,      KC_6,    KC_7,     KC_8,    KC_9,    KC_0,    KC_NO,
+             OSL(APP),   KC_Y,    KC_U,     KC_I,    KC_O,    KC_P,    KC_BSPACE,
                          KC_H,    KC_J,     KC_K,    KC_L,    KC_SCLN, KC_ENT,
              LCTL(KC_2), KC_N,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                   MO(SYMB), KC_NO,   KC_NO,   KC_NO,   KC_RALT,
@@ -69,13 +69,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |Version |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |   1  |   2  |   3  |   4  |   5  |      |           |      |  6   |  7   |  8   |  9   |  0   |        |
+ * |        |   1  |   2  |   3  |   4  |   5  |RALT+M|           |      |  6   |  7   |  8   |  9   |  0   |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        | TAB  |  `   |   \  |   "  | BkSp |------|           |------|      |   -  |  =   |  [   |  ]   |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      | ESC  |      |      |      |           |      |      |      |  ,   |  .   |  /   |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |  L3  |                                       |      |      |      |      |      |
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                        `---------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -89,10 +89,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [SYMB] = LAYOUT_ergodox(
        // left hand
        M(0),    KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,
-       KC_TRNS, KC_1,     KC_2,    KC_3,    KC_4,    KC_5,      KC_NO,
+       KC_TRNS, KC_1,     KC_2,    KC_3,    KC_4,    KC_5,      RALT(KC_M),
        KC_TRNS, KC_TAB,   KC_GRV,  KC_BSLS, KC_QUOT, KC_BSPACE,
        KC_TRNS, KC_NO,    KC_NO,   KC_ESC,  KC_NO,   KC_NO,     KC_NO,
-       KC_TRNS, KC_NO,    KC_NO,   KC_NO,   MO(APP),
+       KC_TRNS, KC_NO,    KC_NO,   KC_NO,   KC_NO,
                                                      KC_TRNS,   KC_TRNS,
                                                                 KC_TRNS,
                                             KC_TRNS, KC_TRNS,   KC_TRNS,
@@ -111,9 +111,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------------------------------------------------.           ,---------------------------------------------------.
  * |        |  F1   |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |   F8   |  F9  |  F10 |        |
  * |--------+-------+------+------+------+-------------|           |------+------+------+--------+------+------+--------|
- * |        | VolDn | VolUp| Mute |      |      | Prev |           | Next |      | Lclk |  Rclk  |      |  F11 |        |
+ * |        | VolDn | VolUp| Mute |      |      |      |           |      |      | Lclk |  Rclk  |      |  F11 |        |
  * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
- * |        |       |      |      |      |      |------|           |------|MsLeft|MsDown|  MsUp  |MsRght|  F12 |  Play  |
+ * |        |       |      |      |      |      |------|           |------|MsLeft|MsDown|  MsUp  |MsRght|  F12 |        |
  * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
  * |        |       |      |      |      |      |      |           |      |      |      |        |      |      |        |
  * `--------+-------+------+------+------+-------------'           `-------------+------+--------+------+------+--------'
@@ -122,37 +122,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |Brwser|
- *                                 |      |      |------|       |------|      |Back  |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
 // MEDIA AND MOUSE
 [MDIA] = LAYOUT_ergodox(
-       KC_NO, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_TRNS,
-       KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,   KC_NO,    KC_MPRV,
+       KC_NO, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_NO,
+       KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,   KC_NO,   KC_NO,
        KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,
+       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
        RESET, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                                  KC_TRNS,  KC_TRNS,
-                                                            KC_TRNS,
-                                         KC_TRNS, KC_TRNS,  KC_TRNS,
+                                                  KC_TRNS, KC_TRNS,
+                                                           KC_TRNS,
+                                         KC_TRNS, KC_TRNS, KC_TRNS,
     // right hand
        KC_NO,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_NO,
-       KC_MNXT, KC_NO,   KC_BTN1, KC_BTN2, KC_NO,   KC_F11, KC_NO,
-                KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_F12, KC_MPLY,
+       KC_NO,   KC_NO,   KC_BTN1, KC_BTN2, KC_NO,   KC_F11, KC_NO,
+                KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_F12, KC_NO,
        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,
                          KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_WBAK
+       KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* Keymap 3: Applications
  *
  * ,-----------------------------------------------------.           ,-------------------------------------------------.
  * |        |       |      |      |      |        |      |           |      |      |      |      |      |      |        |
  * |--------+-------+------+------+------+---------------|           |------+------+------+------+------+------+--------|
- * |        |       |      |      |      |Terminal|      |           |      |      |      | Idea |      |      |        |
+ * |        |       |      |      |      |Terminal|      |           |  L0  |      |      | Idea |      |      |        |
  * |--------+-------+------+------+------+--------|      |           |      |------+------+------+------+------+--------|
  * |        |       |Slack |      |      | Goland |------|           |------|      |      |      | LINE |      |        |
  * |--------+-------+------+------+------+--------|      |           |      |------+------+------+------+------+--------|
@@ -179,14 +179,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                 KC_NO,
                                              KC_B,  KC_NO,      KC_NO,
     // right hand
-       KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
-       KC_NO, KC_NO, KC_NO, RALT(KC_I), KC_NO,      KC_NO, KC_NO,
-              KC_NO, KC_NO, KC_NO,      RALT(KC_L), KC_NO, KC_NO,
-       KC_NO, KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
-                     KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
-       KC_NO, KC_NO,
+       KC_NO,    KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
+       MO(BASE), KC_NO, KC_NO, RALT(KC_I), KC_NO,      KC_NO, KC_NO,
+                 KC_NO, KC_NO, KC_NO,      RALT(KC_L), KC_NO, KC_NO,
+       KC_NO,    KC_NO, KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
+                        KC_NO, KC_NO,      KC_NO,      KC_NO, KC_NO,
+       KC_NO,    KC_NO,
        KC_NO,
-       KC_NO, KC_NO, KC_NO
+       KC_NO,    KC_NO, KC_NO
 ),
 };
 
