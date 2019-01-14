@@ -10,6 +10,9 @@
 #define MDIA 2 // media keys
 #define APP  3 // application keys
 
+#define KC_OSX_EJECT 0x66
+#define SLEEP LALT(LGUI(KC_OSX_EJECT))
+
 /* Use this setting with Karabiner Elements
  * https://github.com/oklahomer/dotfiles/blob/master/.config/karabiner/karabiner.json
  *
@@ -34,7 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | LALT |      |      |      |  L2  |                                       |  L1  |      |      |      | RALT |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,----------------.
- *                                        |      |      |       |        |       |
+ *                                        |      |LALT+ |       |        |       |
+ *                                        |      |LGUI+ |       |        |       |
+ *                                        |      |EJECT |       |        |       |
  *                                ,-------|------|------|       |--------+-------+-------.
  *                                |       |      |      |       |        |       |       |
  *                                | RShift| LGui |------|       |--------| RGui  | Space |
@@ -51,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTRL, KC_A,  KC_S,   KC_D,    KC_F,     KC_G,
         KC_LSFT,  KC_Z,  KC_X,   KC_C,    KC_V,     KC_B,    LCTL(KC_1),
         KC_LALT,  KC_NO, KC_NO,  KC_NO,   MO(MDIA),
-                                                    KC_NO,   KC_NO,
+                                                    KC_NO,   SLEEP,
                                                              KC_NO,
                                           KC_RSFT,  KC_LGUI, KC_NO,
         // right hand
