@@ -244,9 +244,16 @@ void matrix_scan_user(void) {
 
 };
 
+// LSFT flags
 static bool left_shift_down = false;
 static uint16_t left_shift_down_at = 0;
 static bool left_shift_registered = false;
+
+// SPACE flags
+static bool space_down = false;
+static uint16_t space_down_at = 0;
+static bool lctrl_registered = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_LSFT:
@@ -257,7 +264,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         left_shift_down_at = record->event.time;
 
       } else {
-
         // Treat as ESC when tapped ( down -> up ) within TAPPING_TERM
         if (!left_shift_registered && (TIMER_DIFF_16(record->event.time, left_shift_down_at) < TAPPING_TERM)) {
           register_code(KC_ESC);
@@ -276,12 +282,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       return false;
 
+    case KC_SPACE:
+      if (record->event.pressed) {
+        // Now the SPACE is physically pushed
+        // Update the state, but NOT register any down/up operation at this point
+        space_down = true;
+        space_down_at = record->event.time;
+
+      } else {
+        // Treat as SPACE when tapped ( down -> up ) within TAPPING_TERM
+        if (!lctrl_registered && (TIMER_DIFF_16(record->event.time, space_down_at) < TAPPING_TERM)) {
+          register_code(KC_SPACE);
+          unregister_code(KC_SPACE);
+        }
+
+        // Unregister LSFT down operation
+        if (lctrl_registered) {
+          unregister_code(KC_LCTRL);
+        }
+
+        // Reset flags
+        space_down = false;
+        lctrl_registered = false;
+      }
+
+      return false;
+
     default:
       if (left_shift_down && !left_shift_registered && record->event.pressed) {
         // Register LSFT down operation when LSFT is physically pushed but the operation is not yet registered
         // when another key is down
         register_code(KC_LSFT);
         left_shift_registered = true;
+      }
+
+      if (space_down && !lctrl_registered && record->event.pressed) {
+        // Register LCTRL down operation when SPACE is physically pushed but the operation is not yet registered
+        // when another key is down
+        register_code(KC_LCTRL);
+        lctrl_registered = true;
       }
 
       return true;
