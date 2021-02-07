@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |        |       |
  *                                ,-------|------|------|       |--------+-------+-------.
  *                                |       |      |      |       |        |       |       |
- *                                | RShift| LGui |------|       |--------| RGui  | Space |
+ *                                | LShift| LGui |------|       |--------| RGui  | Space |
  *                                |       |      |      |       |        |       |       |
  *                                `---------------------'       `------------------------'
  *
@@ -56,13 +56,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LALT,  KC_NO, KC_NO,  KC_NO,   MO(MDIA),
                                                     KC_NO,   KC_NO,
                                                              KC_NO,
-                                          KC_RSFT,  KC_LGUI, KC_NO,
+                                          KC_LSFT,  KC_LGUI, KC_NO,
         // right hand
-             SLEEP,      KC_6,    KC_7,     KC_8,    KC_9,    KC_0,    KC_NO,
-             OSL(APP),   KC_Y,    KC_U,     KC_I,    KC_O,    KC_P,    KC_BSPACE,
-                         KC_H,    KC_J,     KC_K,    KC_L,    KC_SCLN, KC_ENT,
-             LCTL(KC_2), KC_N,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                  MO(SYMB), KC_NO,   KC_NO,   KC_NO,   KC_RALT,
+             SLEEP,      KC_6,    KC_7,     KC_8,    KC_9,   KC_0,    KC_NO,
+             OSL(APP),   KC_Y,    KC_U,     KC_I,    KC_O,   KC_P,    KC_BSPACE,
+                         KC_H,    KC_J,     KC_K,    KC_L,   KC_SCLN, KC_ENT,
+             LCTL(KC_2), KC_N,    KC_M,     KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
+                                  MO(SYMB), KC_NO,   KC_NO,  KC_NO,   KC_RALT,
              KC_NO,      KC_NO,
              KC_NO,
              KC_NO,      KC_RGUI, KC_SPACE
@@ -242,4 +242,87 @@ void matrix_scan_user(void) {
       break;
   }
 
+};
+
+// LSFT flags
+static bool left_shift_down = false;
+static uint16_t left_shift_down_at = 0;
+static bool left_shift_registered = false;
+
+// SPACE flags
+static bool space_down = false;
+static uint16_t space_down_at = 0;
+static bool lctrl_registered = false;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_LSFT:
+      if (record->event.pressed) {
+        // Now the LSFT is physically pushed
+        // Update the state, but NOT register any down/up operation at this point
+        left_shift_down = true;
+        left_shift_down_at = record->event.time;
+
+      } else {
+        // Treat as ESC when tapped ( down -> up ) within TAPPING_TERM
+        if (!left_shift_registered && (TIMER_DIFF_16(record->event.time, left_shift_down_at) < TAPPING_TERM)) {
+          register_code(KC_ESC);
+          unregister_code(KC_ESC);
+        }
+
+        // Unregister LSFT down operation
+        if (left_shift_registered) {
+          unregister_code(KC_LSFT);
+        }
+
+        // Reset flags
+        left_shift_down = false;
+        left_shift_registered = false;
+      }
+
+      return false;
+
+    case KC_SPACE:
+      if (record->event.pressed) {
+        // Now the SPACE is physically pushed
+        // Update the state, but NOT register any down/up operation at this point
+        space_down = true;
+        space_down_at = record->event.time;
+
+      } else {
+        // Treat as SPACE when tapped ( down -> up ) within TAPPING_TERM
+        if (!lctrl_registered && (TIMER_DIFF_16(record->event.time, space_down_at) < TAPPING_TERM)) {
+          register_code(KC_SPACE);
+          unregister_code(KC_SPACE);
+        }
+
+        // Unregister LSFT down operation
+        if (lctrl_registered) {
+          unregister_code(KC_LCTRL);
+        }
+
+        // Reset flags
+        space_down = false;
+        lctrl_registered = false;
+      }
+
+      return false;
+
+    default:
+      if (left_shift_down && !left_shift_registered && record->event.pressed) {
+        // Register LSFT down operation when LSFT is physically pushed but the operation is not yet registered
+        // when another key is down
+        register_code(KC_LSFT);
+        left_shift_registered = true;
+      }
+
+      if (space_down && !lctrl_registered && record->event.pressed) {
+        // Register LCTRL down operation when SPACE is physically pushed but the operation is not yet registered
+        // when another key is down
+        register_code(KC_LCTRL);
+        lctrl_registered = true;
+      }
+
+      return true;
+  }
 };
