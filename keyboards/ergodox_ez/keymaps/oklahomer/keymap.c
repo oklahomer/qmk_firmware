@@ -112,13 +112,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 2: Media and mouse keys
  *
  * ,---------------------------------------------------.           ,---------------------------------------------------.
- * |        |  F1   |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |   F8   |  F9  |  F10 |        |
- * |--------+-------+------+------+------+-------------|           |------+------+------+--------+------+------+--------|
- * |        | VolDn | VolUp| Mute |      |      |      |           |      |      | Lclk |  Rclk  |      |  F11 |        |
- * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
- * |        |       |      |      |      |      |------|           |------|MsLeft|MsDown|  MsUp  |MsRght|  F12 |        |
- * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
  * |        |       |      |      |      |      |      |           |      |      |      |        |      |      |        |
+ * |--------+-------+------+------+------+-------------|           |------+------+------+--------+------+------+--------|
+ * |        |  F1   |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |   F8   |  F9  |  F10 |        |
+ * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
+ * |        | VolDn | VolUp| Mute |      | BkSp |------|           |------|MsLeft|MsDown|  MsUp  |MsRght|  F11 |        |
+ * |--------+-------+------+------+------+------|      |           |      |------+------+--------+------+------+--------|
+ * |        |       |      |      |      |      |      |           |      |      | Lclk |  Rclk  |      |  F12 |        |
  * `--------+-------+------+------+------+-------------'           `-------------+------+--------+------+------+--------'
  *   |Reset |       |      |      |      |                                       |      |        |      |      |      |
  *   `-----------------------------------'                                       `------------------------------------'
@@ -132,19 +132,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // MEDIA AND MOUSE
 [MDIA] = LAYOUT_ergodox(
-       KC_NO, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_NO,
-       KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,   KC_NO,   KC_NO,
-       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,
+       KC_NO, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,     KC_NO,
+       KC_NO, KC_VOLD, KC_VOLU, KC_MUTE, KC_NO,   KC_BSPACE,
+       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,
        RESET, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                                                  KC_TRNS, KC_TRNS,
-                                                           KC_TRNS,
-                                         KC_TRNS, KC_TRNS, KC_TRNS,
+                                                  KC_TRNS,   KC_TRNS,
+                                                             KC_TRNS,
+                                         KC_TRNS, KC_TRNS,   KC_TRNS,
     // right hand
-       KC_NO,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_NO,
-       KC_NO,   KC_NO,   KC_BTN1, KC_BTN2, KC_NO,   KC_F11, KC_NO,
-                KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_F12, KC_NO,
        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,
+       KC_NO,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_NO,
+                KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_F11, KC_NO,
+       KC_NO,   KC_NO,   KC_BTN1, KC_BTN2, KC_NO,   KC_F12, KC_NO,
                          KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
